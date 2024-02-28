@@ -1,27 +1,14 @@
-<%= form_with(model: @recipe) do |form| %>
-  <%= turbo_frame_tag("new_step") do %>
-    <%= fields_for :steps do |steps_form| %>
-      <li>
-        <div class="flex">
-          <div class="flex-grow-1 mr-1">
-            <%= steps_form.label :step %>
-            <%= steps_form.text_area :step, rows: 1 %>
-          </div>  
-
-          <div class="flex-grow-1">
-            <%= steps_form.label :notes %>
-            <%= steps_form.text_area :notes, rows: 1 %>
-          </div>
-
-          <%= steps_form.hidden_field :number %>
-        </div>
-      </li>
-    <% end %>
-
+<%= turbo_frame_tag("new_step") do %>
+  <%= form.fields_for :steps do |steps_form| %>
     <li>
-      <%= turbo_frame_tag("new_step") do %>
-        <%= link_to "henlo world", new_recipe_step_path(@recipe) %>
-      <% end %>
+      <!-- TODO/STARTHERE this needs to match what the form_with
+      form helpers make for the step HTML form elements in recipes _form -->
     </li>
   <% end %>
+
+  <li>
+    <%= turbo_frame_tag("new_step") do %>
+      <%= link_to "New step", new_recipe_step_path(@recipe) %>
+    <% end %>
+  </li>
 <% end %>

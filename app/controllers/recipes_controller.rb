@@ -21,6 +21,7 @@ class RecipesController < ApplicationController
   end
 
   def new_step
+    @new_step_number = @recipe.steps.count
   end
 
   def create
