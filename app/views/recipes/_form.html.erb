@@ -11,22 +11,57 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="flex">
+    <div class="flex-grow-1 mt-1 mb-1">
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_area :name, required: true, rows: 2 %>
+    </div>
+
+    <div class="flex-grow-2 m-1">
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_area :description, required: true, rows: 2 %>
+    </div>
   </div>
 
   <div>
-    <%= form.label :steps, style: "display: block" %>
-    <%= form.text_area :steps %>
+    <h2 class="fs-6 border-bottom-2 border-black border-style-groove mb-2">
+      Steps:
+    </h2>
+
+    <ol>
+      <%= form.fields_for :steps do |steps_form| %>
+        <li>
+          <div class="flex">
+            <div class="flex-grow-1 mr-1">
+              <%= steps_form.label :step %>
+              <%= steps_form.text_area :step, rows: 1 %>
+            </div>  
+
+            <div class="flex-grow-1">
+              <%= steps_form.label :notes %>
+              <%= steps_form.text_area :notes, rows: 1 %>
+            </div>
+
+            <%= steps_form.hidden_field :number %>
+          </div>
+        </li>
+      <% end %>
+
+      <li>
+        <% if @recipe.new_record? %>
+          <p>
+            You can add more steps by editing the recipe after saving it.
+          </p>
+        <% else %>
+          <%= turbo_frame_tag("new_step") do %>
+            <%= link_to "henlo world", new_recipe_step_path(@recipe) %>
+          <% end %>
+        <% end %>
+      </li>
+    </ol>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
+  <div class="mt-2 mb-2">
     <%= form.submit %>
   </div>
 <% end %>

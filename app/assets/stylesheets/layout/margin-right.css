@@ -2,8 +2,12 @@
     margin-right: auto;
 }
 
-.mr-2 {
+.mr-1 {
     margin-right: 0.25rem;
+}
+
+.mr-2 {
+    margin-right: 0.5rem;
 }
 
 .mr-4 {
