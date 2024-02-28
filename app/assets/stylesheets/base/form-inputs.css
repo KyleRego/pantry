@@ -1,0 +1,21 @@
+input[type="text"], textarea {
+    background-color: white;
+    border: 1px solid black;
+    padding: 0.25rem;
+    width: 100%;
+}
+
+input[type="submit"] {
+    display: block;
+    border: 1px solid black;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+}
+
+select {
+    border: 1px solid black;
+}

@@ -1,5 +1,25 @@
-<h1>Pantry</h1>
+<h1 class="fs-8 text-align-center mb-2 border-bottom-2 border-black border-style-groove">Pantry</h1>
 
-<%= link_to "Ingredients", ingredients_path %>
+<div class="flex">
+  <a class="box-link
+        inline-block text-align-center cursor-pointer
+        border-around-2 border-style-ridge
+        flex justify-around
+        flex-1
+        min-w-32 ml-2 mr-2 mb-4 p-4"
+      
+      href = "<%= ingredients_path %>">
+      Ingredients
+  </a>
 
-<%= link_to "Recipes", recipes_path %>
+  <a class="box-link
+        inline-block text-align-center cursor-pointer
+        border-around-2 border-style-ridge
+        flex justify-around
+        flex-1
+        min-w-32 ml-2 mr-2 mb-4 p-4"
+      
+      href = "<%= recipes_path %>">
+      Recipes
+  </a>
+</div>

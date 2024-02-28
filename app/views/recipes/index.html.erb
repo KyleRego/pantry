@@ -1,15 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Recipes</h1>
+<h1 class="fs-8 border-bottom-2 border-black border-style-groove">Recipes</h1>
 
 <div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <ul>
-      <li id="<%= dom_id recipe %>">
+  <ul class="m-4">
+    <% @recipes.each do |recipe| %>
+      <li id="<%= dom_id recipe %>" class="list-inside list-circle">
         <%= link_to recipe.name, recipe %>
       </li>
-    </ul>
-  <% end %>
+    <% end %>
+  </ul>
 </div>
 
 <%= link_to "New recipe", new_recipe_path %>
