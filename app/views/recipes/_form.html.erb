@@ -61,6 +61,7 @@
               <div class="flex flex-col justify-around">
                 <button
                     type="button"
+                    title="Remove step"
                     class="remove-step-button mt-4 <%= (ctr + 1) == num_steps ? '' : 'display-none' %>"
                     data-action="click->edit-step-form#removeStep">
                   <%= render partial: "layouts/heroicons/trash", locals: { css_class: "w-6 h-6" } %>
