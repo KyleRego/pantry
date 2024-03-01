@@ -42,7 +42,7 @@
             <div class="flex">
               <div class="flex-grow-1 mr-1">
                 <label for="recipe_steps_attributes_<%= ctr %>_step"
-                    >Step <%= ctr %>:</label>
+                    >Step <%= step.number %>:</label>
                 <textarea rows="1" name="recipe[steps_attributes][<%= ctr %>][step]"
                                   id="recipe_steps_attributes_<%= ctr %>_step"
                     ><%= step.step %></textarea>
@@ -70,7 +70,7 @@
 
               <input
                   autocomplete="off"
-                  type="hidden" value="<%= ctr %>"
+                  type="hidden" value="<%= step.number %>"
                   name="recipe[steps_attributes][<%= ctr %>][number]"
                   id="recipe_steps_attributes_<%= ctr %>_number" />
             </div>

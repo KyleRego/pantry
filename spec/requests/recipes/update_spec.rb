@@ -25,12 +25,12 @@ RSpec.describe RecipesController, "#update" do
     { 0 => {
         step: "boil 6 cups of water in a medium pan",
         notes: "some notes",
-        number: 0
+        number: 1
       },
       1 => {
         step: "another step",
         notes: "notes",
-        number: 1
+        number: 2
       }
     }
   end

@@ -38,10 +38,6 @@ class RecipesController < ApplicationController
     @recipe.steps.each(&:destroy!)
     @recipe.update!(recipe_params)
     redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated."
-
-    rescue
-
-    render :edit, status: :unprocessable_entity
   end
 
   def destroy

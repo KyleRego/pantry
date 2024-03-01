@@ -23,7 +23,7 @@ RSpec.describe RecipesController, "#create" do
     { 0 => {
         step: "boil 6 cups of water in a medium pan",
         notes: "some notes",
-        number: 0
+        number: 1
       }
     }
   end
