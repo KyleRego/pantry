@@ -38,7 +38,7 @@
       <ol class="mt-1">
         <% num_steps = @recipe.steps.count %>
         <% @recipe.steps.order(:number).each_with_index do |step, ctr| %>
-          <li data-controller="edit-step-form" class="step-list-item">
+          <li data-controller="step-form--edit" class="step-list-item">
             <div class="flex">
               <div class="flex-grow-1 mr-1">
                 <label for="recipe_steps_attributes_<%= ctr %>_step"
@@ -63,7 +63,7 @@
                     type="button"
                     title="Remove step"
                     class="remove-step-button mt-4 <%= (ctr + 1) == num_steps ? '' : 'display-none' %>"
-                    data-action="click->edit-step-form#removeStep">
+                    data-action="click->step-form--edit#removeStep">
                   <%= render partial: "layouts/heroicons/trash", locals: { css_class: "w-6 h-6" } %>
                 </button>
               </div>

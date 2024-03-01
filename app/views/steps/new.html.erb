@@ -1,14 +1,14 @@
 <%= turbo_frame_tag("new_step") do %>
-  <li data-controller="new-step-form" class="step-list-item">
+  <li data-controller="step-form--new" class="step-list-item">
     <div class="flex">
       <div class="flex-grow-1 mr-1">
-        <label data-new-step-form-target="stepLabel"></label>
-        <textarea rows="1" data-new-step-form-target="stepTextarea"></textarea>
+        <label data-step-form--new-target="stepLabel"></label>
+        <textarea rows="1" data-step-form--new-target="stepTextarea"></textarea>
       </div>
 
       <div class="flex-grow-1">
-        <label data-new-step-form-target="notesLabel">Notes:</label>
-        <textarea rows="1" data-new-step-form-target="notesTextarea"></textarea>
+        <label data-step-form--new-target="notesLabel">Notes:</label>
+        <textarea rows="1" data-step-form--new-target="notesTextarea"></textarea>
       </div>
 
       <div class="flex flex-col justify-around">
@@ -16,12 +16,12 @@
             type="button"
             title="Remove step"
             class="remove-step-button mt-4"
-            data-action="click->new-step-form#removeStep">
+            data-action="click->step-form--new#removeStep">
           <%= render partial: "layouts/heroicons/trash", locals: { css_class: "w-6 h-6" } %>
         </button>
       </div>
 
-      <input data-new-step-form-target="numberInput" autocomplete="off" type="hidden"/>
+      <input data-step-form--new-target="numberInput" autocomplete="off" type="hidden"/>
     </div>
   </li>
 
