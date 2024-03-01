@@ -1,34 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<div id="<%= dom_id @recipe %>">
-  <p>
-    <strong>Name:</strong>
-    <%= @recipe.name %>
-  </p>
+<h1 class="fs-10 border-bottom-2 border-black border-style-groove mb-1">
+  <%= @recipe.name %>
+</h1>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @recipe.description %>
-  </p>
+<p class="mt-2 mb-1">
+  <%= @recipe.description %>
+</p>
 
-  <h2>Ingredients</h2>
+<h2 class="fs-8 pr-2">
+  Steps:
+</h2>
 
-  <% if @recipe.ingredients.any? %>
-    <ul>
-    <% @recipe.ingredients.each do |ingredient| %>
-      <li><%= ingredient.name %></li>
-    <% end %>
-    </ul>
-  <% else %>
-    <p>
-      This recipe has no ingredients yet.
-    </p>
+<ol class="">
+  <% @recipe.steps.each do |step| %>
+    <li class="list-inside list-decimal">
+      <%= step.step %>
+      <% if step.notes %>
+        <p class="ml-8">
+          <%= step.notes %>
+        </p>
+      <% end %>
+    </li>
   <% end %>
+</ol>
 
-</div>
-
-
-<div>
+<div class="mt-4">
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
   <%= link_to "Back to recipes", recipes_path %>
 
