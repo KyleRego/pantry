@@ -19,12 +19,14 @@
 
       <div class="flex-grow-1 mt-1 mb-1">
         <label for="recipe_name">Name:</label>
-        <textarea id="recipe_name" required="required" rows="2" name="recipe[name]"><%= @recipe.name %></textarea>
+        <textarea id="recipe_name" required="required" rows="2" name="recipe[name]"
+          ><%= @recipe.name %></textarea>
       </div>
 
       <div class="flex-grow-2 mt-1 mb-1 ml-1">
         <label for="recipe_description">Description:</label>
-        <textarea id="recipe_description" required="required" rows="2" name="recipe[description]"><%= @recipe.description %></textarea>
+        <textarea id="recipe_description" required="required" rows="2" name="recipe[description]"
+          ><%= @recipe.description %></textarea>
       </div>
     </fieldset>
 
@@ -34,22 +36,42 @@
       </legend>
 
       <ol class="mt-1">
-        <% @recipe.steps.order(:number).each_with_index do |step, num| %>
-          <li class="step-list-item">
+        <% num_steps = @recipe.steps.count %>
+        <% @recipe.steps.order(:number).each_with_index do |step, ctr| %>
+          <li data-controller="edit-step-form" class="step-list-item">
             <div class="flex">
               <div class="flex-grow-1 mr-1">
-                <label for="recipe_steps_attributes_<%= num %>_step">Step <%= num %>:</label>
-                <textarea rows="1" name="recipe[steps_attributes][<%= num %>][step]" id="recipe_steps_attributes_<%= num %>_step"><%= step.step %></textarea>
+                <label for="recipe_steps_attributes_<%= ctr %>_step"
+                    >Step <%= ctr %>:</label>
+                <textarea rows="1" name="recipe[steps_attributes][<%= ctr %>][step]"
+                                  id="recipe_steps_attributes_<%= ctr %>_step"
+                    ><%= step.step %></textarea>
               </div>  
 
               <div class="flex-grow-1">
-                <label for="recipe_steps_attributes_<%= num %>_notes">Notes:</label>
-                <textarea rows="1" name="recipe[steps_attributes][<%= num %>][notes]" id="recipe_steps_attributes_<%= num %>_notes"><%= step.notes %></textarea>
+                <label for="recipe_steps_attributes_<%= ctr %>_notes"
+                    >Notes:</label>
+                <textarea
+                      rows="1"
+                      name="recipe[steps_attributes][<%= ctr %>][notes]"
+                      id="recipe_steps_attributes_<%= ctr %>_notes"
+                  ><%= step.notes %></textarea>
               </div>
 
-              <input autocomplete="off" type="hidden" value="<%= num %>"
-                      name="recipe[steps_attributes][<%= num %>][number]"
-                      id="recipe_steps_attributes_<%= num %>_number" />
+              <div class="flex flex-col justify-around">
+                <button
+                    type="button"
+                    class="remove-step-button mt-4 <%= (ctr + 1) == num_steps ? '' : 'display-none' %>"
+                    data-action="click->edit-step-form#removeStep">
+                  <%= render partial: "layouts/heroicons/trash", locals: { css_class: "w-6 h-6" } %>
+                </button>
+              </div>
+
+              <input
+                  autocomplete="off"
+                  type="hidden" value="<%= ctr %>"
+                  name="recipe[steps_attributes][<%= ctr %>][number]"
+                  id="recipe_steps_attributes_<%= ctr %>_number" />
             </div>
           </li>
         <% end %>
