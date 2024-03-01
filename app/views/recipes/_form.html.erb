@@ -1,67 +1,64 @@
-<%= form_with(model: recipe) do |form| %>
-  <% if recipe.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+<div>
+  <%= form_with(model: recipe) do |form| %>
+    <% if recipe.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
-      <ul>
-        <% recipe.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <ul>
+          <% recipe.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <fieldset class="flex">
+      <legend>Recipe information</legend>
+      <div class="flex-grow-1 mt-1 mb-1">
+        <label for="recipe_name">Name:</label>
+        <textarea id="recipe_name" required="required" rows="2" name="recipe[name]"><%= @recipe.name %></textarea>
+      </div>
+
+      <div class="flex-grow-2 m-1">
+        <label for="recipe_description">Description:</label>
+        <textarea id="recipe_description" required="required" rows="2" name="recipe[description]"><%= @recipe.description %></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="fs-6 border-bottom-2 border-black border-style-groove mb-2">
+        Steps:
+      </legend>
+
+      <ol>
+        <% @recipe.steps.order(:number).each_with_index do |step, num| %>
+          <li class="step-list-item">
+            <div class="flex">
+              <div class="flex-grow-1 mr-1">
+                <label for="recipe_steps_attributes_<%= num %>_step">Step <%= num %>:</label>
+                <textarea rows="1" name="recipe[steps_attributes][<%= num %>][step]" id="recipe_steps_attributes_<%= num %>_step"><%= step.step %></textarea>
+              </div>  
+
+              <div class="flex-grow-1">
+                <label for="recipe_steps_attributes_<%= num %>_notes">Notes:</label>
+                <textarea rows="1" name="recipe[steps_attributes][<%= num %>][notes]" id="recipe_steps_attributes_<%= num %>_notes"><%= step.notes %></textarea>
+              </div>
+
+              <input autocomplete="off" type="hidden" value="<%= num %>"
+                      name="recipe[steps_attributes][<%= num %>][number]"
+                      id="recipe_steps_attributes_<%= num %>_number" />
+            </div>
+          </li>
         <% end %>
-      </ul>
+
+        <%= turbo_frame_tag("new_step") do %>
+          <%= link_to "New step", new_step_path %>
+        <% end %>
+      </ol>
+    </fieldset>
+
+    <div class="mt-2 mb-2">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="flex">
-    <div class="flex-grow-1 mt-1 mb-1">
-      <%= form.label :name, style: "display: block" %>
-      <%= form.text_area :name, required: true, rows: 2 %>
-    </div>
-
-    <div class="flex-grow-2 m-1">
-      <%= form.label :description, style: "display: block" %>
-      <%= form.text_area :description, required: true, rows: 2 %>
-    </div>
-  </div>
-
-  <div>
-    <h2 class="fs-6 border-bottom-2 border-black border-style-groove mb-2">
-      Steps:
-    </h2>
-
-    <ol>
-      <%= form.fields_for :steps do |steps_form| %>
-        <li>
-          <div class="flex">
-            <div class="flex-grow-1 mr-1">
-              <%= steps_form.label :step %>
-              <%= steps_form.text_area :step, rows: 1 %>
-            </div>  
-
-            <div class="flex-grow-1">
-              <%= steps_form.label :notes %>
-              <%= steps_form.text_area :notes, rows: 1 %>
-            </div>
-
-            <%= steps_form.hidden_field :number %>
-          </div>
-        </li>
-      <% end %>
-
-      <li>
-        <% if @recipe.new_record? %>
-          <p>
-            You can add more steps by editing the recipe after saving it.
-          </p>
-        <% else %>
-          <%= turbo_frame_tag("new_step") do %>
-            <%= link_to "New step", new_recipe_step_path(@recipe) %>
-          <% end %>
-        <% end %>
-      </li>
-    </ol>
-  </div>
-
-  <div class="mt-2 mb-2">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,0 +1,23 @@
+<%= turbo_frame_tag("new_step") do %>
+  <li data-controller="new-step-form" class="step-list-item">
+    <div class="flex">
+      <div class="flex-grow-1 mr-1">
+        <label data-new-step-form-target="stepLabel"></label>
+        <textarea rows="1" data-new-step-form-target="stepTextarea"></textarea>
+      </div>
+
+      <div class="flex-grow-1">
+        <label data-new-step-form-target="notesLabel">Notes:</label>
+        <textarea rows="1" data-new-step-form-target="notesTextarea"></textarea>
+      </div>
+
+      <input data-new-step-form-target="numberInput" autocomplete="off" type="hidden"/>
+    </div>
+  </li>
+
+  <li>
+    <%= turbo_frame_tag("new_step") do %>
+      <%= link_to "New step", new_step_path %>
+    <% end %>
+  </li>
+<% end %>
