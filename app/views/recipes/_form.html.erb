@@ -12,25 +12,28 @@
       </div>
     <% end %>
 
-    <fieldset class="flex">
-      <legend>Recipe information</legend>
+    <fieldset class="flex border-bottom-2 border-style-groove">
+      <legend class="fs-5 border-bottom-2 border-style-groove">
+        Recipe details:
+      </legend>
+
       <div class="flex-grow-1 mt-1 mb-1">
         <label for="recipe_name">Name:</label>
         <textarea id="recipe_name" required="required" rows="2" name="recipe[name]"><%= @recipe.name %></textarea>
       </div>
 
-      <div class="flex-grow-2 m-1">
+      <div class="flex-grow-2 mt-1 mb-1 ml-1">
         <label for="recipe_description">Description:</label>
         <textarea id="recipe_description" required="required" rows="2" name="recipe[description]"><%= @recipe.description %></textarea>
       </div>
     </fieldset>
 
     <fieldset>
-      <legend class="fs-6 border-bottom-2 border-black border-style-groove mb-2">
-        Steps:
+      <legend class="fs-5 border-bottom-2 border-style-groove">
+        Recipe steps:
       </legend>
 
-      <ol>
+      <ol class="mt-1">
         <% @recipe.steps.order(:number).each_with_index do |step, num| %>
           <li class="step-list-item">
             <div class="flex">

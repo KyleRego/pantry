@@ -11,6 +11,13 @@
         <textarea rows="1" data-new-step-form-target="notesTextarea"></textarea>
       </div>
 
+      <div class="flex flex-col justify-around">
+        <button type="button" class="remove-step-button mt-4"
+                data-action="click->new-step-form#removeStep">
+          <%= render partial: "layouts/heroicons/trash", locals: { css_class: "w-6 h-6" } %>
+        </button>
+      </div>
+
       <input data-new-step-form-target="numberInput" autocomplete="off" type="hidden"/>
     </div>
   </li>
