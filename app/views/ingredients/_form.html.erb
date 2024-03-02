@@ -12,36 +12,20 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, "Name:", style: "display: block" %>
+    <%= form.text_field :name, required: true %>
   </div>
 
   <div>
-    <%= form.label :countable, style: "display: block" %>
-    <%= form.check_box :countable %>
+    <%= form.label :type, "Type:" %>
+    <%= select_tag :type,
+        options_for_select([ "Count", "Weight", "Volume", "Excess" ]),
+        prompt: "Select a measurement type:",
+        title: "Select a measurement type:",
+        required: true %>
   </div>
 
-  <div>
-    <%= form.label :volumeable, style: "display: block" %>
-    <%= form.check_box :volumeable %>
-  </div>
-
-  <div>
-    <%= form.label :weighable, style: "display: block" %>
-    <%= form.check_box :weighable %>
-  </div>
-
-  <div>
-    <%= form.label :excess, style: "display: block" %>
-    <%= form.check_box :excess %>
-  </div>
-
-  <div>
-    <%= form.label :category_id, style: "display: block" %>
-    <%= form.number_field :category_id %>
-  </div>
-
-  <div>
+  <div class="mt-4">
     <%= form.submit %>
   </div>
 <% end %>
